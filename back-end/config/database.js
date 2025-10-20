@@ -7,9 +7,15 @@ const sequelize = new Sequelize(
   process.env.BASE_PASSWORD,
   {
     host: process.env.BASE_URL,
-    port: process.env.BASE_PORT || 3306,
+    port: process.env.BASE_PORT || 21013,
     dialect: 'mysql',
     logging: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false  
+      }
+    }
   }
 );
 
