@@ -43,23 +43,14 @@ router.post('/contactForm', async (req, res) => {
   const { formData } = req.body;
   try {
     const { email, name, phone, type } = formData;
-    
-    const transporter = nodemailer.createTransport({
-      host:"smtp-relay.brevo.com",
-      port:587,
-      secure:false,
-      auth: {
-        user: 'process.env.EMAIL_USER',
-        pass: 'process.env.EMAIL_PASSWORD',
-      },
-      connectionTimeout: 10000,
-    });
+    console.log(email,name ,phone,type)
+   const resend = new Resend('re_7YoPZ1oZ_GdAM5iqzMNghRbgWuSjiVF4Q');
 
-    await transporter.sendMail({
-      from: 'ikhlas.mail.sender@gmail.com',
-      to: 'mohamedfawaz.sb@gmail.com',
-      subject: `New ${type} Request from ${name}`,
-      html: `
+resend.emails.send({
+  from: 'onboarding@resend.dev',
+  to: 'mohamedfawaz.sb@gmail.com',
+  subject:`New ${type} Request from `,
+  html: `
   <!DOCTYPE html>
   <html>
   <head>
@@ -122,19 +113,14 @@ router.post('/contactForm', async (req, res) => {
   </body>
   </html>
   `, 
-    });
+}); 
 
     res.status(200).json({ message: 'success' });
   } catch (error) {
-  console.error('Email error details:', error);
-  res.status(500).json({ 
-    message: 'Failed to send email', 
-    error: error.message,
-    stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
-  });
-}
+    console.error(error);
+    res.status(500).json({ message: 'Failed to send email' });
+  }
 });
-
 // ================== Register ==================
 router.post('/sign_in', async (req, res) => {
   try {
