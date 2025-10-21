@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
 const { Op } = require('sequelize');
+const { Resend } = require('resend');
 const router = express.Router();
 
 // Sequelize Models
