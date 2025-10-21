@@ -49,8 +49,8 @@ router.post('/contactForm', async (req, res) => {
       port: 465,
       secure: true,
       auth: {
-        user: 'ikhlas.mail.sender@gmail.com',
-        pass: 'omvkmjiylgyrwioy',
+        user: 'process.env.EMAIL_USER',
+        pass: 'process.env.EMAIL_PASSWORD',
       },
       connectionTimeout: 10000,
     });
