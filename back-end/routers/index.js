@@ -43,9 +43,9 @@ router.post('/contactForm', async (req, res) => {
   const { formData } = req.body;
   try {
     const { email, name, phone, type } = formData;
-    console.log(email,name ,phone,type)
+    
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: "smtp.gmail.com",
       port: 587,
       secure: false,
       auth: {
@@ -55,6 +55,7 @@ router.post('/contactForm', async (req, res) => {
     });
 
     await transporter.sendMail({
+      from: 'ikhlas.mail.sender@gmail.com',
       to: 'mohamedfawaz.sb@gmail.com',
       subject: `New ${type} Request from ${name}`,
       html: `
