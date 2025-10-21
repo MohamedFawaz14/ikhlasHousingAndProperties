@@ -52,6 +52,7 @@ router.post('/contactForm', async (req, res) => {
         user: 'ikhlas.mail.sender@gmail.com',
         pass: 'omvkmjiylgyrwioy',
       },
+      connectionTimeout: 10000,
     });
 
     await transporter.sendMail({
