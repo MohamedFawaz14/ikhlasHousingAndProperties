@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
@@ -43,15 +44,16 @@ router.post('/contactForm', async (req, res) => {
   const { formData } = req.body;
   try {
     const { email, name, phone, type } = formData;
-    console.log(email,name ,phone,type)
-   const resend = new Resend('re_7YoPZ1oZ_GdAM5iqzMNghRbgWuSjiVF4Q');
+    console.log(email, name, phone, type);
 
-resend.emails.send({
-  from: 'onboarding@resend.dev',
-  to: 'mohamedfawaz.sb@gmail.com',
-  subject:`New ${type} Request from `,
-  html: `
-  <!DOCTYPE html>
+    const resend = new Resend(process.env.RESEND_API_KEY); 
+
+    const { data, error } = await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: 'mohamedfawaz.sb@gmail.com',
+      subject: `New ${type} Request from ${name}`,
+      html: `
+        <!DOCTYPE html>
   <html>
   <head>
     <meta charset="utf-8">
@@ -112,13 +114,20 @@ resend.emails.send({
     </div>
   </body>
   </html>
-  `, 
-}); 
+  `
+    });
 
-    res.status(200).json({ message: 'success' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Failed to send email' });
+    if (error) {
+      console.error('Resend error:', error);
+      return res.status(500).json({ message: 'Failed to send email', error: error.message });
+    }
+
+    console.log('Email sent:', data);
+    return res.status(200).json({ message: 'Email sent successfully!' });
+
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    return res.status(500).json({ message: 'Internal server error' });
   }
 });
 // ================== Register ==================
