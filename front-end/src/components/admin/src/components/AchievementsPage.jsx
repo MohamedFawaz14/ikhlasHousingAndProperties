@@ -157,7 +157,7 @@ export default function AchievementsPage() {
 
                 <div className="relative p-6">
                   {/* Action Buttons */}
-                  <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute top-4 right-4 flex gap-2  group-hover:opacity-100 transition-opacity duration-300">
                     <button
                       onClick={() => {
                         setEditingAchievement(a);
