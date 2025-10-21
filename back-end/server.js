@@ -23,5 +23,7 @@ sequelize.sync({ alter: true })
   .then(() => console.log('✅ All MySQL models synced'))
   .catch(err => console.error('❌ Sync error:', err));
 
-App.listen(process.env.PORT || 8080, () => console.log('Server running on port 8080'));
-
+const PORT = process.env.PORT || 8080;
+App.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});
