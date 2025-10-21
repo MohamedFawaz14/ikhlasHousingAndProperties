@@ -112,14 +112,14 @@ export default function AchievementsPage() {
 <div className="relative">
   <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-amber-500 rounded-2xl blur-2xl opacity-20"></div>
   <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-blue-100">
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
       {/* Title + Subtitle Group */}
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-3 mb-2">
         <div className="mt-1 p-2 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg">
           <Trophy className="w-6 h-6 text-white" />
         </div>
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-yellow-300 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-yellow-300 bg-clip-text text-transparent">
             Achievements & Milestones
           </h1>
           <p className="text-gray-600 mt-1">
