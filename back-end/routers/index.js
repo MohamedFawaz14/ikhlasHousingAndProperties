@@ -126,9 +126,13 @@ router.post('/contactForm', async (req, res) => {
 
     res.status(200).json({ message: 'success' });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Failed to send email' });
-  }
+  console.error('Email error details:', error);
+  res.status(500).json({ 
+    message: 'Failed to send email', 
+    error: error.message,
+    stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+  });
+}
 });
 
 // ================== Register ==================
