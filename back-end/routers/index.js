@@ -46,8 +46,8 @@ router.post('/contactForm', async (req, res) => {
     
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
+      port: 465,
+      secure: true,
       auth: {
         user: 'ikhlas.mail.sender@gmail.com',
         pass: 'omvkmjiylgyrwioy',
